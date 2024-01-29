@@ -32,14 +32,14 @@ for db in `echo "$DBS"`; do
     TABLES=$(hive -e 'SHOW TABLES;')
     TABLES=`echo "$TABLES"|sed 's/+//g;s/|//g;s/ //g;s/-//g'|grep -v tab_name| strings`
     for table in `echo "$TABLES"`;  do
-    set -x
+
     LOCATION=$(hive -e "DESCRIBE FORMATTED ${db}.${table};" | grep 'Location:' | awk '{print $4}')
 
     # Count small files in this location
     SMALL_FILES=$(count_small_files $LOCATION)
 
     echo "Table: $table, Small Files: $SMALL_FILES"
-    set +x
+
     done
 done
 
