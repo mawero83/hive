@@ -38,7 +38,7 @@ for db in `echo "$DBS"`; do
     # Count small files in this location
     SMALL_FILES=$(count_small_files $LOCATION)
 
-    echo "Table: $table, Small Files: $SMALL_FILES"
+    echo "Table: $db, $table, Small Files: $SMALL_FILES"
 
     done
 done
